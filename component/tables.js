@@ -1,28 +1,15 @@
-$(function(){
-    var data = {
-            row_headers : ['Column 1', 'Column 2', 'Column 3'],
-            rows        : [
-                ['1', '2', '3'],
-                ['4', '5', '6']
-            ]
-        };
-
-    var table = Tables.render(data);
-
-    $('.maincontent').append(table);
-});
-
 var Tables = (function($){
-    var template = ' \
-            <table> \
-              <thead> \
+    var settings = {},
+        template = ' \
+            <table class="table {{ classes }}"> \
+              <thead class="table-head"> \
                 <tr> \
                   {{#each row_headers}} \
                     <th>{{ this }}</th> \
                   {{/each}} \
                 </tr> \
               </thead> \
-              <tbody> \
+              <tbody class="table-body"> \
                 {{#each rows}} \
                   <tr> \
                     {{#each this}} \
@@ -33,14 +20,24 @@ var Tables = (function($){
               </tbody> \
             </table>';
 
-    var render = function(data){
-        var content = Handlebars.compile(template);
-        
-        return content(data);
-    };
+    var init = function(config){
+            settings = config;
+            template = config['template'] ? config['template'] : template;
+
+            return this;
+        },
+        render = function(data, target){
+            var content = Handlebars.compile(template);
+            
+            data = $.extend(true, {}, data, settings);
+
+            target.append(content(data));
+            return this;
+        };
 
     return {
-        render : render
+        render  : render,
+        init    : init
     };
 
 })(jQuery);
