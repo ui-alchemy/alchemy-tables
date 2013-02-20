@@ -1,0 +1,16 @@
+.table {
+
+  width: 95%;
+
+  td, th {
+    text-align: center;
+  }
+
+  tbody tr:hover {
+    background: rgb(250, 196, 98);
+  }
+
+  .active {
+    background: #CCC;
+  }
+}
