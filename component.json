@@ -1,6 +1,7 @@
 {
   "name": "alchemy-tables",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "main" : ['./component/scripts/**/*.js', './component/styles/**/*.scss', './component/templates/**/*.html'],
   "dependencies": {
     "angular": "~1.0.5",
     "json3": "~3.2.4",
