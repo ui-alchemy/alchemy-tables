@@ -1,6 +1,6 @@
 {
-  "name": "ENTER COMPONENT NAME HERE (e.g. alchemy-<name>)",
-  "version": "0.0.0",
+  "name": "alchemy-tables",
+  "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
     "grunt": "0.4.0rc7",
