@@ -12,6 +12,8 @@ files = [
   'app/components/angular/angular.js',
   'app/components/angular-mocks/angular-mocks.js',
 
+  'app/components/alchemy/alchemy.js',
+  'component/templates/**/*.js',
   'component/scripts/**/*.js',
 
   'app/views/**/*.html',

@@ -126,8 +126,8 @@ module.exports = function (grunt) {
       dist: {
         files: {
           'dist/alchemy-tables.js': [
-            'component/scripts/**/*.js',
-            'component/templates/*.js'
+            'component/templates/*.js', //must be first
+            'component/scripts/**/*.js'
           ]
         }
       }
@@ -246,7 +246,7 @@ module.exports = function (grunt) {
       var content  = escapeContent(grunt.file.read(file)),
           template = '';
 
-      template += 'angular.module("' + file + '", []).run(function($templateCache) {\n';
+      template += 'angular.module("alch-templates").run(function($templateCache) {\n';
       template += '  $templateCache.put("' + file + '",\n';
       template += '    "' + content + '");\n';
       template += '});\n';

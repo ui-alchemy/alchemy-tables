@@ -1,8 +1,6 @@
 'use strict';
 
-var alchemy = angular.module('alchemy', []);
-    
-alchemy.directive('alchTable', function(){
+angular.module('alchemy').directive('alchTable', function(){
     return {
         restrict: 'A',
         transclude: true,
@@ -13,7 +11,7 @@ alchemy.directive('alchTable', function(){
     };
 });
 
-alchemy.directive('rowSelect', function(){
+angular.module('alchemy').directive('rowSelect', function(){
     return {
         require: 'alchTable',
 

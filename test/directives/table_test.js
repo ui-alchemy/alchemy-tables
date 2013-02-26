@@ -4,7 +4,8 @@ describe('Directive: Alchemy Tables', function () {
     var element, scope, row_data;
 
     beforeEach(module('alchemy'));
-    beforeEach(module('component/templates/table.html'));
+
+    beforeEach(module('alch-templates'));
 
     beforeEach(function(){
         row_data = {
