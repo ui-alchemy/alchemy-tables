@@ -59,11 +59,15 @@ describe('Directive: Alchemy Tables', function () {
     describe('table with row select', function(){
 
         beforeEach(inject(function($rootScope, $compile){
-            element = angular.element('<table alch-table row-select></table>');
+            element = angular.element('<table alch-table="table_data" row-select></table>');
 
             scope = $rootScope;
             $compile(element)(scope);
             scope.$digest();
+
+            scope.$apply(function(){
+                scope.table_data = row_data;
+            })
         }));
 
         it('should contain a checkbox in the table head', inject(function ($rootScope, $compile) {
