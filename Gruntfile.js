@@ -78,7 +78,7 @@ module.exports = function (grunt) {
       }
     },
     clean: {
-      dist: ['.tmp', 'dist/*'],
+      dist: ['.tmp', 'dist/*.js', 'dist/*.scss', 'dist/*.css'],
       server: '.tmp'
     },
     jshint: {
