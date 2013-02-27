@@ -16,13 +16,13 @@ function ExampleCtrl($scope){
 };
 
 function table1Ctrl($scope){
-    var tmp_data = data(10);
+    var tmp_data = data(12);
 
     $scope.table_data = tmp_data;
 };
 
 function table2Ctrl($scope){
-    var tmp_data = data(5);
+    var tmp_data = data(2);
 
     $scope.table_data = tmp_data;
 };
