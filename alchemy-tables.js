@@ -2,7 +2,7 @@ angular.module("alch-templates").run(function($templateCache) {
   $templateCache.put("component/templates/table.html",
     "<thead>" +
     "  <tr>" +
-    "    <th ng-show=\"row_select\"><input ng-click=\"select_all(rows)\" class=\"select_all\" type=\"checkbox\" name=\"select_all\" value=\"none\"></td>" +
+    "    <th ng-show=\"row_select\"><input ng-click=\"select_all(table_data.rows)\" class=\"select_all\" type=\"checkbox\" name=\"select_all\" value=\"none\"></td>" +
     "    <th ng-repeat=\"header in table_data.row_headers\">{{ header }}</th>" +
     "  </tr>" +
     "</thead>" +
