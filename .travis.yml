@@ -3,6 +3,7 @@ node_js:
   - 0.8
 
 before_script:
+  - sudo gem install compass
   - npm install -g testacular@canary grunt-cli bower
   - npm install
   - bower install --dev
