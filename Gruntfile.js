@@ -93,7 +93,13 @@ module.exports = function (grunt) {
     testacular: {
       unit: {
         configFile: 'testacular.conf.js',
-        singleRun: true
+        singleRun: true,
+        browsers: ['PhantomJS']
+      },
+      ci: {
+        configFile: 'testacular.conf.js',
+        singleRun: true,
+        browsers: ['PhantomJS', 'Firefox']
       }
     },
     compass: {
@@ -269,13 +275,22 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
-  grunt.registerTask('test', [
-    'clean:server',
-    'compass',
-    'html2js',
-    'connect:test',
-    'testacular'
-  ]);
+  grunt.registerTask('test', function(arg1){
+    var task_list = [
+      'clean:server',
+      'compass',
+      'html2js',
+      'connect:test'
+    ];
+
+    if (arg1 === 'ci') {
+      task_list.push('testacular:ci');
+    } else {
+      task_list.push('testacular:unit');
+    }
+
+    grunt.task.run(task_list);
+  });
 
   grunt.registerTask('build', [
     'clean:dist',
