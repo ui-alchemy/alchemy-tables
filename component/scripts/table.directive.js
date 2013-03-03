@@ -4,10 +4,29 @@ angular.module('alchemy').directive('alchTable', function(){
     return {
         restrict: 'A',
         transclude: true,
-        scope : true,
+        scope: true,
         templateUrl: 'component/templates/table.html',
 
-        controller: function(){}
+        controller: function($scope){
+            $scope.show_cell = function(cell){
+                var to_show;
+
+                angular.forEach($scope.table_data.columns, function(header){
+                    if( header.id === cell.column_id ){
+                        to_show = header.show;
+                    }
+                });
+
+                return to_show;
+            };
+        },
+
+        link: function(scope, element, attrs){
+            scope.$watch(attrs.alchTable, function(data){
+                scope.rows = data.rows;
+                scope.columns = data.columns;
+            });
+        }
     };
 });
 

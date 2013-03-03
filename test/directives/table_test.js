@@ -3,19 +3,43 @@
 describe('Directive: Alchemy Tables', function () {
     var element, scope, row_data;
 
-    beforeEach(module('alchemy'));
+    beforeEach(module('alchemy', 'alch-templates'));
 
-    beforeEach(module('alch-templates'));
+    //beforeEach(module('alch-templates'));
 
     beforeEach(function(){
         row_data = {
-            'row_headers' : ['Column 1', 'Column 2'],
+            'columns' : [{ 
+                id : 1, 
+                name : 'Column 1', 
+                show : true 
+            }, { 
+                id: 2,
+                name: 'Column 2',
+                show: true
+            }],
             'rows'        : [{
                 'id'    : 'row_1',
-                'cells' : [1, 2]
-            },
-            {   'id'    : 'row_2',
-                'cells' : [3, 4]
+                'cells' : [{
+                    id: 1,
+                    display: 1,
+                    column: 1
+                },{
+                    id: 2,
+                    display: 2,
+                    column: 2
+                }]
+            },{
+                'id': 'row_2',      
+                'cells' : [{
+                    id: 1,
+                    display: 1,
+                    column: 1
+                },{
+                    id: 2,
+                    display: 2,
+                    column: 2
+                }]
             }]
         }
     });
@@ -26,13 +50,10 @@ describe('Directive: Alchemy Tables', function () {
             element = angular.element('<table alch-table="table_data"></table>');
 
             scope = $rootScope;
+            scope.table_data = row_data;
 
             $compile(element)(scope);
             scope.$digest();
-    
-            scope.$apply(function(){
-                scope.table_data = row_data;
-            })
         }));
 
         it('should generate a table body and head', inject(function () {
@@ -49,9 +70,22 @@ describe('Directive: Alchemy Tables', function () {
         }));
 
         it('should generate two columns', inject(function () {
-            var body = element.find('thead');
+            var head = element.find('thead');
 
-            expect(body.find('th').length).toBe(row_data['row_headers'].length + 1);
+           expect(head.find('th').length).toBe(row_data.columns.length + 1);
+        }));
+
+        it('should allow an action when clicking a column header', inject(function () {
+            var column_id = undefined;
+
+            scope.sort = function(column){
+                if (column.id === 1){
+                    column_id = column.id;
+                }
+            };
+            element.find('th').click();
+
+            expect(column_id).toBe(row_data.columns[0].id);
         }));
 
     });
@@ -63,12 +97,10 @@ describe('Directive: Alchemy Tables', function () {
             element = angular.element('<table alch-table="table_data" row-select></table>');
 
             scope = $rootScope;
+            scope.table_data = row_data;
+
             $compile(element)(scope);
             scope.$digest();
-
-            scope.$apply(function(){
-                scope.table_data = row_data;
-            })
         }));
 
         it('should contain a checkbox in the table head', inject(function ($rootScope, $compile) {
