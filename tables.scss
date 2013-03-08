@@ -1,7 +1,6 @@
 .table {
 
-  width: 90%;
-
+  width: 100%;
 
   td, th {
     text-align: center;
@@ -14,4 +13,8 @@
   .active {
     background: #CCC;
   }
+}
+
+.table-selection-row {
+  background: rgb(255, 207, 105);
 }
