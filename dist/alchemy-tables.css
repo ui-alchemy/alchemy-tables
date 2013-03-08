@@ -1,17 +1,32 @@
+/* line 1, ../../app/styles/example.scss */
+.fl {
+  float: left;
+}
+
+/* line 2, ../../app/styles/example.scss */
+.fr {
+  float: right;
+}
+
 /* Will be compiled down to a single stylesheet with your sass files */
 /* line 1, ../../component/styles/tables.scss */
 .table {
-  width: 90%;
+  width: 100%;
 }
-/* line 6, ../../component/styles/tables.scss */
+/* line 5, ../../component/styles/tables.scss */
 .table td, .table th {
   text-align: center;
 }
-/* line 10, ../../component/styles/tables.scss */
+/* line 9, ../../component/styles/tables.scss */
 .table tbody tr:hover {
   background: #fac462;
 }
-/* line 14, ../../component/styles/tables.scss */
+/* line 13, ../../component/styles/tables.scss */
 .table .active {
   background: #CCC;
+}
+
+/* line 18, ../../component/styles/tables.scss */
+.table-selection-row {
+  background: #ffcf69;
 }

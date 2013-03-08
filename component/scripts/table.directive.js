@@ -25,7 +25,7 @@ angular.module('alchemy').directive('alchTable', function(){
 
             $scope.show_row = function(row){
                 return row.show;
-            }
+            };
 
         }
     };
@@ -58,7 +58,7 @@ angular.module('alchemy').directive('rowSelect', function(){
             };
         },
 
-        link: function(scope, element, attrs, tableController){
+        link: function(scope){
             scope.row_select = true;
         }
     };
@@ -76,7 +76,7 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
 
             $scope.deselect_all = function(){
                 $scope.table.select_all(false);
-            }
+            };
 
         }
     };
