@@ -1,11 +1,9 @@
 'use strict';
 
-describe('Directive: Alchemy Tables', function () {
+describe('Directive: Row Select', function () {
     var element, scope, row_data;
 
     beforeEach(module('alchemy', 'alch-templates'));
-
-    //beforeEach(module('alch-templates'));
 
     beforeEach(function(){
         row_data = {
@@ -44,10 +42,10 @@ describe('Directive: Alchemy Tables', function () {
         }
     });
 
-    describe('table', function(){
+    describe('table with row select', function(){
 
         beforeEach(inject(function($rootScope, $compile){
-            element = angular.element('<table alch-table="table_data"></table>');
+            element = angular.element('<table alch-table="table_data" row-select></table>');
 
             scope = $rootScope;
             scope.table_data = row_data;
@@ -56,38 +54,20 @@ describe('Directive: Alchemy Tables', function () {
             scope.$digest();
         }));
 
-        it('should generate a table body and head', inject(function () {
-            var body = element.find('tbody'),
-                head = element.find('thead');
+        it('should contain a checkbox in the table head', inject(function ($rootScope, $compile) {
+            var checkbox = element.find('thead').find('input[type="checkbox"]');
 
-            expect(body.length).toBe(1);
+            expect(checkbox.length).toBe(1);
         }));
 
-        it('should generate two rows', inject(function () {
-            var body = element.find('tbody');
+        it('should allow selection of all rows', inject(function ($rootScope, $compile) {
+            var checkbox = element.find('thead').find('input[type="checkbox"]');
 
-            expect(body.find('tr').length).toBe(2);
+            checkbox.click();
+
+            expect(checkbox.is(':checked')).toBe(true);
         }));
 
-        it('should generate two columns', inject(function () {
-            var head = element.find('thead');
-
-           expect(head.find('th').length).toBe(row_data.columns.length + 2);
-        }));
-
-        it('should allow an action when clicking a column header', inject(function () {
-            var column_id = undefined;
-            
-            scope.sort = function(column){
-                debugger
-                if (column.id === 1){
-                    column_id = column.id;
-                }
-            };
-            
-            $(element.find('th')[2]).click();
-
-            expect(column_id).toBe(row_data.columns[0].id);
-        }));
     });
+
 });
