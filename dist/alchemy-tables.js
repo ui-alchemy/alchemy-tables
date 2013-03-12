@@ -8,7 +8,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "    </th>" +
     "  </tr>" +
     "  <tr>" +
-    "    <th ng-show=\"row_select\">" +
+    "    <th ng-show=\"rowSelect\">" +
     "      <input class=\"select_all\" type=\"checkbox\" name=\"select_all\" ng-click=\"table.select_all()\" ng-model=\"table.all_selected\">" +
     "    </th>" +
     "    <th ng-click=\"sort(header)\" ng-show=\"header.show\" ng-repeat=\"header in table.columns\" ng-class=\"{ active : header.active }\">" +
@@ -19,7 +19,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "" +
     "<tbody>" +
     "  <tr ng-class=\"{active : row.selected }\" ng-repeat=\"row in table.rows\" ng-show=\"show_row(row)\">" +
-    "    <td ng-show=\"row_select\">" +
+    "    <td ng-show=\"rowSelect\">" +
     "      <input ng-model=\"row.selected\" type=\"checkbox\" name=\"{{ row.id }}\" value=\"{{ row.id }}\" ng-change=\"adjust_num_selected(row.selected)\">" +
     "    </td>" +
     "    <td ng-show=\"show_cell(cell)\" ng-repeat=\"cell in row.cells\">" +
@@ -50,18 +50,20 @@ angular.module("alch-templates").run(function($templateCache) {
 angular.module('alchemy').directive('alchTable', function(){
     return {
         restrict: 'A',
-        transclude: false,
+        transclude: true,
         scope: {
-            'table' : '=alchTable'
+            'table' : '=alchTable',
+            'rowSelect' : '@'
         },
         templateUrl: 'component/templates/table.html',
 
         controller: function($scope){
+            var table = $scope.table;
 
             $scope.show_cell = function(cell){
                 var to_show;
 
-                angular.forEach($scope.table.columns, function(header){
+                angular.forEach(table.columns, function(header){
                     if( header.id === cell.column_id ){
                         to_show = header.show;
                     }
@@ -73,20 +75,6 @@ angular.module('alchemy').directive('alchTable', function(){
             $scope.show_row = function(row){
                 return row.show;
             };
-
-        }
-    };
-});
-
-angular.module('alchemy').directive('rowSelect', function(){
-    return {
-        require: '^alchTable',
-        scope: {
-            'table' : '=alchTable'
-        },
-
-        controller : function($scope){
-            var table = $scope.table;
 
             $scope.table.select_all = function(selected){
                 if( selected !== undefined ){
@@ -103,10 +91,7 @@ angular.module('alchemy').directive('rowSelect', function(){
             $scope.adjust_num_selected = function(selected){
                 table.num_selected += selected ? 1 : -1;
             };
-        },
 
-        link: function(scope){
-            scope.row_select = true;
         }
     };
 });
