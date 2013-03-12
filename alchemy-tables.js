@@ -9,7 +9,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "  </tr>" +
     "  <tr>" +
     "    <th ng-show=\"rowSelect\">" +
-    "      <input class=\"select_all\" type=\"checkbox\" name=\"select_all\" ng-click=\"table.select_all()\" ng-model=\"table.all_selected\">" +
+    "      <input class=\"select_all\" type=\"checkbox\" name=\"select_all\" ng-model=\"table.all_selected\">" +
     "    </th>" +
     "    <th ng-click=\"sort(header)\" ng-show=\"header.show\" ng-repeat=\"header in table.columns\" ng-class=\"{ active : header.active }\">" +
     "      {{ header.display }}" +
@@ -37,7 +37,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "    <input type=\"text\" placeholder=\"Search...\" ng-model=\"table.search_string\">" +
     "    Showing {{ table.start }}-{{ table.offset }} of {{ table.total }} {{ table.model }}" +
     "  </span>" +
-    "  <span class=\"fr\">" +
+    "  <span class=\"fr\" ng-show=\"table.num_selected\">" +
     "    <span ng-model=\"table.num_selected\">{{ table.num_selected }} Selected</span>" +
     "    <a ng-click=\"deselect_all()\" href=\"\">Deselect All</a>" +
     "  </span>" +
@@ -58,12 +58,11 @@ angular.module('alchemy').directive('alchTable', function(){
         templateUrl: 'component/templates/table.html',
 
         controller: function($scope){
-            var table = $scope.table;
 
             $scope.show_cell = function(cell){
                 var to_show;
 
-                angular.forEach(table.columns, function(header){
+                angular.forEach($scope.table.columns, function(header){
                     if( header.id === cell.column_id ){
                         to_show = header.show;
                     }
@@ -76,21 +75,19 @@ angular.module('alchemy').directive('alchTable', function(){
                 return row.show;
             };
 
-            $scope.table.select_all = function(selected){
-                if( selected !== undefined ){
-                    table.all_selected = selected;
-                }
+            $scope.adjust_num_selected = function(selected){
+                $scope.table.num_selected += selected ? 1 : -1;
+            };
+
+            $scope.$watch('table.all_selected', function(){
+                var table = $scope.table;
 
                 table.num_selected = table.all_selected ? table.rows.length : 0;
 
                 angular.forEach(table.rows, function(row){
                     row.selected = table.all_selected;
                 });
-            };
-
-            $scope.adjust_num_selected = function(selected){
-                table.num_selected += selected ? 1 : -1;
-            };
+            });
 
         }
     };
@@ -98,18 +95,17 @@ angular.module('alchemy').directive('alchTable', function(){
 
 angular.module('alchemy').directive('alchTableToolbar', function(){
     return {
-        require: '^alchTable',
+        restrict: 'A',
+        transclude: true,
         scope: {
             'table' : '=alchTableToolbar'
         },
         templateUrl: 'component/templates/tool_bar.html',
 
         controller: function($scope){
-
             $scope.deselect_all = function(){
-                $scope.table.select_all(false);
+                $scope.table.all_selected = false;
             };
-
         }
     };
 });
