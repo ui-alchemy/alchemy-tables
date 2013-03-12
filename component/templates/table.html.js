@@ -9,7 +9,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "  </tr>" +
     "  <tr>" +
     "    <th ng-show=\"rowSelect\">" +
-    "      <input class=\"select_all\" type=\"checkbox\" name=\"select_all\" ng-click=\"table.select_all()\" ng-model=\"table.all_selected\">" +
+    "      <input class=\"select_all\" type=\"checkbox\" name=\"select_all\" ng-model=\"table.all_selected\">" +
     "    </th>" +
     "    <th ng-click=\"sort(header)\" ng-show=\"header.show\" ng-repeat=\"header in table.columns\" ng-class=\"{ active : header.active }\">" +
     "      {{ header.display }}" +

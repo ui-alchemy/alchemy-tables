@@ -45,7 +45,7 @@ describe('Directive: Row Select', function () {
     describe('table with row select', function(){
 
         beforeEach(inject(function($rootScope, $compile){
-            element = angular.element('<table alch-table="table_data" row-select></table>');
+            element = angular.element('<table alch-table="table_data" row-select="true"></table>');
 
             scope = $rootScope;
             scope.table_data = row_data;
@@ -60,10 +60,19 @@ describe('Directive: Row Select', function () {
             expect(checkbox.length).toBe(1);
         }));
 
-        it('should allow selection of all rows', inject(function ($rootScope, $compile) {
+        it('should select all rows on click', inject(function ($rootScope, $compile) {
             var checkbox = element.find('thead').find('input[type="checkbox"]');
 
             checkbox.click();
+
+            expect(checkbox.is(':checked')).toBe(true);
+        }));
+
+        it('should select all rows on all_selected property set to true', inject(function ($rootScope, $compile) {
+            var checkbox = element.find('thead').find('input[type="checkbox"]');
+
+            scope.table_data.all_selected = true;
+            scope.$digest();
 
             expect(checkbox.is(':checked')).toBe(true);
         }));
