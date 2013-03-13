@@ -23,12 +23,12 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
 
     $scope.title = "Table 1 - Main Example";
     $scope.table_data.model = "Systems";
-    $scope.table_data.total = tmp_data.rows.length;
+    $scope.table_data.total = tmp_data.rows.length + 1;
     $scope.table_data.start = 1;
     $scope.table_data.offset = tmp_data.rows.length;
 
     $scope.table_data.sort = function(header){
-        angular.forEach($scope.table_data.columns, function(column){
+        angular.forEach($scope.table_data.data.columns, function(column){
             if( column.active ){
                 column.active = false;
             }

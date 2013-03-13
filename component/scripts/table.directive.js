@@ -44,6 +44,13 @@ angular.module('alchemy').directive('alchTable', function(){
                     row.selected = table.all_selected;
                 });
             };
+
+            $scope.table.more_results = function(){
+                var more = $scope.table.total > $scope.table.offset;
+
+                more = more && $scope.table.all_selected;
+                return more;
+            };
         }
     };
 });
@@ -58,8 +65,6 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
         templateUrl: 'component/templates/tool_bar.html',
 
         controller: function($scope){
-            $scope.table.search_string = '';
-
             $scope.deselect_all = function(){
                 $scope.table.select_all(false);
             };

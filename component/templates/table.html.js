@@ -2,7 +2,7 @@ angular.module("alch-templates").run(function($templateCache) {
   $templateCache.put("component/templates/table.html",
     "<thead>" +
     "  <tr>" +
-    "    <th class=\"table-selection-row\" colspan=\"{{ table.data.columns.length +1 }}\" ng-show=\"table.all_selected\">" +
+    "    <th class=\"table-selection-row\" colspan=\"{{ table.data.columns.length +1 }}\" ng-show=\"table.more_results()\">" +
     "      All {{ table.offset }} results shown are currently selected.  " +
     "      <a href=\"\">Select all {{ table.total }} results.</a>" +
     "    </th>" +
@@ -11,7 +11,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "    <th ng-show=\"rowSelect\">" +
     "      <input class=\"select_all\" type=\"checkbox\" name=\"select_all\" ng-model=\"table.all_selected\" ng-change=\"table.select_all()\">" +
     "    </th>" +
-    "    <th ng-click=\"table.sort(header)\" ng-show=\"header.show\" ng-repeat=\"header in table.data.columns\" ng-class=\"{ active : header.active }\">" +
+    "    <th ng-click=\"table.sort(header)\" ng-show=\"header.show\" ng-repeat=\"header in table.data.columns\" ng-class=\"{ 'active-column' : header.active }\">" +
     "      {{ header.display }}" +
     "    </th>" +
     "  </tr>" +

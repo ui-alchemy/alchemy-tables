@@ -3,7 +3,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "<div ng-controller=\"table1Ctrl\">" +
     "  <h2>{{ title }}</h2>" +
     "  <div alch-table-toolbar=\"table_data\"></div>" +
-    "  <table alch-table=\"table_data\" class=\"table\" row-select=\"true\">" +
+    "  <table alch-table=\"table_data\" class=\"table stable focus stripe-row\" row-select=\"true\">" +
     "  </table>" +
     "</div>" +
     "" +
