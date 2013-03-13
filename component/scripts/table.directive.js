@@ -58,9 +58,25 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
         templateUrl: 'component/templates/tool_bar.html',
 
         controller: function($scope){
+            $scope.table.search_string = '';
+
             $scope.deselect_all = function(){
                 $scope.table.select_all(false);
             };
+        }
+    };
+});
+
+angular.module('alchemy').directive('onEnter', function() {
+    return {
+        scope: true,
+
+        link: function(scope, element, attrs) {
+            element.bind('keydown keypress', function(event) {
+                if(event.which === 13) {
+                    scope.$apply(attrs.onEnter);
+                }
+            });
         }
     };
 });

@@ -1,6 +1,6 @@
 <div ng-model="table.data.columns" colspan="{{ table.data.columns.length + 1 }}">
   <span class="fl">
-    <input type="text" placeholder="Search..." ng-model="table.search_string" ng-change="table.search(table.search_string)">
+    <input type="text" placeholder="Search..." ng-model="table.search_string" on-enter="table.search(table.search_string)">
     Showing {{ table.start }}-{{ table.offset }} of {{ table.total }} {{ table.model }}
   </span>
   <span class="fr" ng-show="table.num_selected">

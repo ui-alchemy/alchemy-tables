@@ -34,7 +34,7 @@ angular.module("alch-templates").run(function($templateCache) {
   $templateCache.put("component/templates/tool_bar.html",
     "<div ng-model=\"table.data.columns\" colspan=\"{{ table.data.columns.length + 1 }}\">" +
     "  <span class=\"fl\">" +
-    "    <input type=\"text\" placeholder=\"Search...\" ng-model=\"table.search_string\" ng-change=\"table.search(table.search_string)\">" +
+    "    <input type=\"text\" placeholder=\"Search...\" ng-model=\"table.search_string\" on-enter=\"table.search(table.search_string)\">" +
     "    Showing {{ table.start }}-{{ table.offset }} of {{ table.total }} {{ table.model }}" +
     "  </span>" +
     "  <span class=\"fr\" ng-show=\"table.num_selected\">" +
@@ -105,9 +105,25 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
         templateUrl: 'component/templates/tool_bar.html',
 
         controller: function($scope){
+            $scope.table.search_string = '';
+
             $scope.deselect_all = function(){
                 $scope.table.select_all(false);
             };
+        }
+    };
+});
+
+angular.module('alchemy').directive('onEnter', function() {
+    return {
+        scope: true,
+
+        link: function(scope, element, attrs) {
+            element.bind('keydown keypress', function(event) {
+                if(event.which === 13) {
+                    scope.$apply(attrs.onEnter);
+                }
+            });
         }
     };
 });
