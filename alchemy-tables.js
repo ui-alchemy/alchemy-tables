@@ -2,7 +2,7 @@ angular.module("alch-templates").run(function($templateCache) {
   $templateCache.put("component/templates/table.html",
     "<thead>" +
     "  <tr>" +
-    "    <th class=\"table-selection-row\" colspan=\"{{ table.data.columns.length +1 }}\" ng-show=\"table.all_selected\">" +
+    "    <th class=\"table-selection-row\" colspan=\"{{ table.data.columns.length +1 }}\" ng-show=\"table.more_results()\">" +
     "      All {{ table.offset }} results shown are currently selected.  " +
     "      <a href=\"\">Select all {{ table.total }} results.</a>" +
     "    </th>" +
@@ -11,7 +11,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "    <th ng-show=\"rowSelect\">" +
     "      <input class=\"select_all\" type=\"checkbox\" name=\"select_all\" ng-model=\"table.all_selected\" ng-change=\"table.select_all()\">" +
     "    </th>" +
-    "    <th ng-click=\"table.sort(header)\" ng-show=\"header.show\" ng-repeat=\"header in table.data.columns\" ng-class=\"{ active : header.active }\">" +
+    "    <th ng-click=\"table.sort(header)\" ng-show=\"header.show\" ng-repeat=\"header in table.data.columns\" ng-class=\"{ 'active-column' : header.active }\">" +
     "      {{ header.display }}" +
     "    </th>" +
     "  </tr>" +
@@ -32,15 +32,15 @@ angular.module("alch-templates").run(function($templateCache) {
 
 angular.module("alch-templates").run(function($templateCache) {
   $templateCache.put("component/templates/tool_bar.html",
-    "<div ng-model=\"table.data.columns\" colspan=\"{{ table.data.columns.length + 1 }}\">" +
-    "  <span class=\"fl\">" +
-    "    <input type=\"text\" placeholder=\"Search...\" ng-model=\"table.search_string\" on-enter=\"table.search(table.search_string)\">" +
+    "<div ng-model=\"table.data.columns\" class=\"form table-toolbar\">" +
+    "  <div class=\"fl\">" +
+    "    <input type=\"text\" class=\"input\" placeholder=\"Search...\" ng-model=\"table.search_string\" on-enter=\"table.search(table.search_string)\">" +
     "    Showing {{ table.start }}-{{ table.offset }} of {{ table.total }} {{ table.model }}" +
-    "  </span>" +
-    "  <span class=\"fr\" ng-show=\"table.num_selected\">" +
+    "  </div>" +
+    "  <div class=\"fr deselect\" ng-show=\"table.num_selected\">" +
     "    <span ng-model=\"table.num_selected\">{{ table.num_selected }} Selected</span>" +
     "    <a ng-click=\"deselect_all()\" href=\"\">Deselect All</a>" +
-    "  </span>" +
+    "  </div>" +
     "</div>" +
     "");
 });
@@ -91,6 +91,13 @@ angular.module('alchemy').directive('alchTable', function(){
                     row.selected = table.all_selected;
                 });
             };
+
+            $scope.table.more_results = function(){
+                var more = $scope.table.total > $scope.table.offset;
+
+                more = more && $scope.table.all_selected;
+                return more;
+            };
         }
     };
 });
@@ -105,8 +112,6 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
         templateUrl: 'component/templates/tool_bar.html',
 
         controller: function($scope){
-            $scope.table.search_string = '';
-
             $scope.deselect_all = function(){
                 $scope.table.select_all(false);
             };
