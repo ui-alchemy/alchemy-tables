@@ -50,7 +50,8 @@ describe('Directive: Alchemy Tables', function () {
             element = angular.element('<table alch-table="table_data"></table>');
 
             scope = $rootScope;
-            scope.table_data = row_data;
+            scope.table_data = {};
+            scope.table_data.data = row_data;
 
             $compile(element)(scope);
             scope.$digest();

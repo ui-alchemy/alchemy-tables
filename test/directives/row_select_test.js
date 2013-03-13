@@ -48,7 +48,8 @@ describe('Directive: Row Select', function () {
             element = angular.element('<table alch-table="table_data" row-select="true"></table>');
 
             scope = $rootScope;
-            scope.table_data = row_data;
+            scope.table_data = {};
+            scope.table_data.data = row_data;
 
             $compile(element)(scope);
             scope.$digest();

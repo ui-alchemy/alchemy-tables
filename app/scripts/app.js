@@ -18,7 +18,8 @@ angular.module('componentExampleApp').controller('ExampleCtrl', function($scope)
 angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
     var tmp_data = data(8);
 
-    $scope.table_data = tmp_data;
+    $scope.table_data = {};
+    $scope.table_data.data = tmp_data;
 
     $scope.title = "Table 1 - Main Example";
     $scope.table_data.model = "Systems";
@@ -26,7 +27,7 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
     $scope.table_data.start = 1;
     $scope.table_data.offset = tmp_data.rows.length;
 
-    $scope.sort = function(header){
+    $scope.table_data.sort = function(header){
         angular.forEach($scope.table_data.columns, function(column){
             if( column.active ){
                 column.active = false;
@@ -35,8 +36,8 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
         header.active = true;
     }
 
-    $scope.$watch('table_data.search_string', function(search_term){
-        angular.forEach($scope.table_data.rows, function(row){
+    $scope.table_data.search = function(search_term){
+        angular.forEach($scope.table_data.data.rows, function(row){
             var search_string = $scope.table_data.search_string;
             
             if( search_string !== undefined && search_string !== "" ){
@@ -47,7 +48,7 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
                 row.show = true;
             }
         });
-    });
+    };
 });
 
 angular.module('componentExampleApp').controller('table2Ctrl', function($scope){

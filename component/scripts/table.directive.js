@@ -3,7 +3,6 @@
 angular.module('alchemy').directive('alchTable', function(){
     return {
         restrict: 'A',
-        transclude: true,
         scope: {
             'table' : '=alchTable',
             'rowSelect' : '@'
@@ -15,7 +14,7 @@ angular.module('alchemy').directive('alchTable', function(){
             $scope.show_cell = function(cell){
                 var to_show;
 
-                angular.forEach($scope.table.columns, function(header){
+                angular.forEach($scope.table.data.columns, function(header){
                     if( header.id === cell.column_id ){
                         to_show = header.show;
                     }
@@ -32,16 +31,19 @@ angular.module('alchemy').directive('alchTable', function(){
                 $scope.table.num_selected += selected ? 1 : -1;
             };
 
-            $scope.$watch('table.all_selected', function(){
+            $scope.table.select_all = function(selected){
                 var table = $scope.table;
 
-                table.num_selected = table.all_selected ? table.rows.length : 0;
+                if( selected !== undefined ){
+                    table.all_selected = selected;
+                }
 
-                angular.forEach(table.rows, function(row){
+                table.num_selected = table.all_selected ? table.data.rows.length : 0;
+
+                angular.forEach(table.data.rows, function(row){
                     row.selected = table.all_selected;
                 });
-            });
-
+            };
         }
     };
 });
@@ -57,7 +59,7 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
 
         controller: function($scope){
             $scope.deselect_all = function(){
-                $scope.table.all_selected = false;
+                $scope.table.select_all(false);
             };
         }
     };
