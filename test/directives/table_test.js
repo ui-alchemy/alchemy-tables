@@ -5,8 +5,6 @@ describe('Directive: Alchemy Tables', function () {
 
     beforeEach(module('alchemy', 'alch-templates'));
 
-    //beforeEach(module('alch-templates'));
-
     beforeEach(function(){
         row_data = {
             'columns' : [{ 

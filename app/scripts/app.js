@@ -56,7 +56,8 @@ angular.module('componentExampleApp').controller('table2Ctrl', function($scope){
 
     $scope.title = "Table 2 - Proving isolate scope";
 
-    $scope.table_data = tmp_data;
+    $scope.table_data = {};
+    $scope.table_data.data = tmp_data;
 });
 
 function data(size){

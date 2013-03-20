@@ -71,17 +71,3 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
         }
     };
 });
-
-angular.module('alchemy').directive('onEnter', function() {
-    return {
-        scope: true,
-
-        link: function(scope, element, attrs) {
-            element.bind('keydown keypress', function(event) {
-                if(event.which === 13) {
-                    scope.$apply(attrs.onEnter);
-                }
-            });
-        }
-    };
-});
