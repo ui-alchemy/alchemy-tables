@@ -27,7 +27,9 @@ angular.module("alch-templates").run(function($templateCache) {
     "    </th>" +
     "  </tr>" +
     "</thead>" +
-    "<tbody>" +
+    "<tbody infinite-scroll=\"table.next_page()\" " +
+    "       infinite-scroll-disable=\"table.loading_more\" " +
+    "       infinite-scroll-distance=\"table.scroll_distance\">" +
     "  <tr ng-class=\"{active : row.selected }\" " +
     "      ng-repeat=\"row in table.data.rows\" " +
     "      ng-show=\"show_row(row)\">" +

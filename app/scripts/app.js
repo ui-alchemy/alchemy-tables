@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('componentExampleApp', ['alchemy'])
+angular.module('componentExampleApp', ['alchemy', 'infinite-scroll'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -16,7 +16,7 @@ angular.module('componentExampleApp').controller('ExampleCtrl', function($scope)
 });
 
 angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
-    var tmp_data = data(8);
+    var tmp_data = data(8, 25);
 
     $scope.table_data = {};
     $scope.table_data.data = tmp_data;
@@ -26,6 +26,7 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
     $scope.table_data.total = tmp_data.rows.length + 1;
     $scope.table_data.start = 1;
     $scope.table_data.offset = tmp_data.rows.length;
+    $scope.table_data.scroll_distance = 1;
 
     $scope.table_data.sort = function(header){
         angular.forEach($scope.table_data.data.columns, function(column){
@@ -49,6 +50,10 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
             }
         });
     };
+
+    $scope.table_data.next_page = function(){
+        $scope.table_data.data.rows = $scope.table_data.data.rows.concat(data(8, 25)['rows']);
+    };
 });
 
 angular.module('componentExampleApp').controller('table2Ctrl', function($scope){
@@ -60,20 +65,19 @@ angular.module('componentExampleApp').controller('table2Ctrl', function($scope){
     $scope.table_data.data = tmp_data;
 });
 
-function data(size){
+function data(num_columns, num_rows){
     var i, j, cells =[],
         tmp = {
         columns : [],
         rows        : []
     };
 
-    for( i=0; i < size; i += 1){
+    for( i=0; i < num_columns; i += 1){
         tmp['columns'].push({ id : i, display : 'Column ' + i, show : true });
-        cells = [];
-        
-        for(j=0; j < size; j+= 1){
-            cells.push({ id : j + i, display : i +j, column_id : j });
-        }
+    }
+
+    for(j=0; j < num_rows; j+= 1){
+        cells.push({ id : j + i, display : i +j, column_id : j });
 
         tmp['rows'].push({
             'row_id': 'row_' + i,

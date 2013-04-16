@@ -11,7 +11,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "    Showing {{ table.start }}-{{ table.offset }} of {{ table.total }} {{ table.model }}" +
     "  </div>" +
     "  <div class=\"fr deselect\" ng-show=\"table.num_selected\">" +
-    "    <span ng-model=\"table.num_selected\">a{{ table.num_selected }} Selected</span>" +
+    "    <span ng-model=\"table.num_selected\">{{ table.num_selected }} Selected</span>" +
     "    <a ng-click=\"deselect_all()\" href=\"\">Deselect All</a>" +
     "  </div>" +
     "</div>" +

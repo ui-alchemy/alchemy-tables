@@ -10,6 +10,9 @@ angular.module('alchemy').directive('alchTable', function(){
         templateUrl: 'component/templates/table.html',
 
         controller: function($scope){
+            if (!$scope.table.scroll_distance) {
+                $scope.table.scroll_distance = 0;
+            }
 
             $scope.show_cell = function(cell){
                 var to_show;

@@ -27,7 +27,9 @@ angular.module("alch-templates").run(function($templateCache) {
     "    </th>" +
     "  </tr>" +
     "</thead>" +
-    "<tbody>" +
+    "<tbody infinite-scroll=\"table.next_page()\" " +
+    "       infinite-scroll-disable=\"table.loading_more\" " +
+    "       infinite-scroll-distance=\"table.scroll_distance\">" +
     "  <tr ng-class=\"{active : row.selected }\" " +
     "      ng-repeat=\"row in table.data.rows\" " +
     "      ng-show=\"show_row(row)\">" +
@@ -60,7 +62,7 @@ angular.module("alch-templates").run(function($templateCache) {
     "    Showing {{ table.start }}-{{ table.offset }} of {{ table.total }} {{ table.model }}" +
     "  </div>" +
     "  <div class=\"fr deselect\" ng-show=\"table.num_selected\">" +
-    "    <span ng-model=\"table.num_selected\">a{{ table.num_selected }} Selected</span>" +
+    "    <span ng-model=\"table.num_selected\">{{ table.num_selected }} Selected</span>" +
     "    <a ng-click=\"deselect_all()\" href=\"\">Deselect All</a>" +
     "  </div>" +
     "</div>" +
@@ -79,6 +81,9 @@ angular.module('alchemy').directive('alchTable', function(){
         templateUrl: 'component/templates/table.html',
 
         controller: function($scope){
+            if (!$scope.table.scroll_distance) {
+                $scope.table.scroll_distance = 0;
+            }
 
             $scope.show_cell = function(cell){
                 var to_show;
