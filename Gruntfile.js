@@ -132,7 +132,7 @@ module.exports = function (grunt) {
             'component/scripts/**/*.js'
           ],
           'dist/<%= yeoman.component %>.css': [
-            '.tmp/styles/{,*/}*.css'
+            '.tmp/styles/main.css'
           ]
         }
       }
