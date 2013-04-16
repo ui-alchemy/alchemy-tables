@@ -1,10 +1,11 @@
 {
   "name": "alchemy-tables",
-  "version": "0.0.7",
+  "version": "0.0.14",
   "main" : ["./*.js", "./*.scss", "./*.css"],
   "dependencies": {
     "angular": "~1.0.5",
     "jquery": "~1.9.1",
+    "ngInfiniteScroll": "~1.0.0",
     "alchemy": ">=0.0.1",
     "alchemy-forms": ">=0.0.1"
   },
