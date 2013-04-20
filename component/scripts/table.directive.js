@@ -9,7 +9,7 @@ angular.module('alchemy').directive('alchTable', function(){
         },
         templateUrl: 'component/templates/table.html',
 
-        controller: function($scope){
+        controller: ['$scope', function($scope){
             if (!$scope.table.scroll_distance) {
                 $scope.table.scroll_distance = 0;
             }
@@ -54,7 +54,7 @@ angular.module('alchemy').directive('alchTable', function(){
                 more = more && $scope.table.all_selected;
                 return more;
             };
-        }
+        }]
     };
 });
 
@@ -67,10 +67,10 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
         },
         templateUrl: 'component/templates/tool_bar.html',
 
-        controller: function($scope){
+        controller: ['$scope', function($scope){
             $scope.deselect_all = function(){
                 $scope.table.select_all(false);
             };
-        }
+        }]
     };
 });

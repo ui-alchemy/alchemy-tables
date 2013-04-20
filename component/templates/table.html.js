@@ -1,4 +1,4 @@
-angular.module("alch-templates").run(function($templateCache) {
+angular.module("alch-templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("component/templates/table.html",
     "<thead>" +
     "  <tr>" +
@@ -47,4 +47,4 @@ angular.module("alch-templates").run(function($templateCache) {
     "  </tr>" +
     "</tbody>" +
     "");
-});
+}]);

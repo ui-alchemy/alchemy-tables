@@ -208,8 +208,8 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          'dist/scripts/scripts.js': [
-            'dist/scripts/scripts.js'
+          'dist/<%= yeoman.component %>.min.js': [
+            'dist/<%= yeoman.component %>.js'
           ],
         }
       }
@@ -250,10 +250,10 @@ module.exports = function (grunt) {
       var content  = escapeContent(grunt.file.read(file)),
           template = '';
 
-      template += 'angular.module("alch-templates").run(function($templateCache) {\n';
+      template += 'angular.module("alch-templates").run(["$templateCache", function($templateCache) {\n';
       template += '  $templateCache.put("' + file + '",\n';
       template += '    "' + content + '");\n';
-      template += '});\n';
+      template += '}]);\n';
 
       grunt.file.write(file + '.js', template);
     });
@@ -303,8 +303,8 @@ module.exports = function (grunt) {
     'copy',
     //'cdnify',
     //'usemin',
-    //'ngmin',
-    //'uglify'
+    'ngmin',
+    'uglify'
   ]);
 
   grunt.registerTask('default', ['build']);

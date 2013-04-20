@@ -1,4 +1,4 @@
-angular.module("alch-templates").run(function($templateCache) {
+angular.module("alch-templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("component/templates/tool_bar.html",
     "<div ng-model=\"table.data.columns\" class=\"form table-toolbar\">" +
     "  <div class=\"fl\">" +
@@ -16,4 +16,4 @@ angular.module("alch-templates").run(function($templateCache) {
     "  </div>" +
     "</div>" +
     "");
-});
+}]);

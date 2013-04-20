@@ -1,4 +1,4 @@
-angular.module("alch-templates").run(function($templateCache) {
+angular.module("alch-templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("app/views/example.html",
     "<div ng-controller=\"table1Ctrl\">" +
     "  <h2>{{ title }}</h2>" +
@@ -7,4 +7,4 @@ angular.module("alch-templates").run(function($templateCache) {
     "  </table>" +
     "</div>" +
     "");
-});
+}]);
