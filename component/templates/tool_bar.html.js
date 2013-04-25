@@ -8,7 +8,7 @@ angular.module("alch-templates").run(["$templateCache", function($templateCache)
     "           ng-model=\"table.search_string\" " +
     "           on-enter=\"table.search(table.search_string)\"" +
     "    />" +
-    "    Showing {{ table.start }}-{{ table.offset }} of {{ table.total }} {{ table.model }}" +
+    "    Showing {{ table.offset }}-{{ table.subtotal }} of {{ table.total }} {{ table.model }}" +
     "  </div>" +
     "  <div class=\"fr deselect\" ng-show=\"table.num_selected\">" +
     "    <span ng-model=\"table.num_selected\">{{ table.num_selected }} Selected</span>" +

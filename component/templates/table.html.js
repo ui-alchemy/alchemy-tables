@@ -40,9 +40,9 @@ angular.module("alch-templates").run(["$templateCache", function($templateCache)
     "             ng-change=\"adjust_num_selected(row.selected)\">" +
     "    </td>" +
     "    <td ng-show=\"show_cell(cell)\" " +
-    "        ng-repeat=\"cell in row.cells\">" +
+    "        ng-repeat=\"cell in row.cells\"" +
+    "        ng-bind-html-unsafe=\"cell.display\">" +
     "      " +
-    "        {{ cell.display }}" +
     "    </td>" +
     "  </tr>" +
     "</tbody>" +
