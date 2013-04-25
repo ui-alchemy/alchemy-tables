@@ -64,7 +64,9 @@ describe('Directive: Row Select', function () {
         it('should select all rows on click', inject(function ($rootScope, $compile) {
             var checkbox = element.find('thead').find('input[type="checkbox"]');
 
-            checkbox.click();
+            checkbox.trigger('click');
+            checkbox.attr('checked', 'checked');
+            checkbox.prop('checked', true);
 
             expect(checkbox.is(':checked')).toBe(true);
         }));
