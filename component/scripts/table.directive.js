@@ -74,3 +74,14 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
         }]
     };
 });
+
+angular.module('alchemy').directive('tableScroll', function() {
+    return function(scope, elm, attr) {
+        var raw = elm[0];
+        elm.bind('scroll', function() {
+            if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+                scope.$apply(attr.tableScroll);
+            }
+        });
+    };
+});

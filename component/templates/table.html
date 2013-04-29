@@ -25,8 +25,9 @@
     </th>
   </tr>
 </thead>
-<tbody infinite-scroll="table.next_page()" 
-       infinite-scroll-disable="table.loading_more" 
+<tbody table-scroll="table.next_page()"
+       infinite-scroll="table.next_page()"
+       infinite-scroll-disable="table.loading_more"
        infinite-scroll-distance="table.scroll_distance">
   <tr ng-class="{active : row.selected }" 
       ng-repeat="row in table.data.rows" 
