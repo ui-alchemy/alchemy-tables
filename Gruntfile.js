@@ -74,7 +74,7 @@ module.exports = function (grunt) {
     },
     open: {
       server: {
-        url: 'http://localhost:3501'
+        url: 'http://localhost:9000'
       }
     },
     clean: {
