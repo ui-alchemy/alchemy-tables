@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('alchemy').directive('alchTable', function(){
+angular.module('alchemy').directive('alchTable', ['$window', function ($window) {
     return {
         restrict: 'A',
         scope: {
@@ -8,6 +8,19 @@ angular.module('alchemy').directive('alchTable', function(){
             'rowSelect' : '@'
         },
         templateUrl: 'component/templates/table.html',
+
+        link: function (scope, element) {
+            // Load the next page of results if the
+            scope.$watch('table.data.rows', function (newValue, oldValue) {
+                // Only do this when directive first initializes
+                if (newValue && !oldValue) {
+                    var space = $window.innerHeight - (element[0].offsetTop + element[0].offsetHeight);
+                    if (space > 0) {
+                        scope.table.next_page();
+                    }
+                }
+            });
+        },
 
         controller: ['$scope', function($scope){
             if (!$scope.table.scroll_distance) {
@@ -56,7 +69,7 @@ angular.module('alchemy').directive('alchTable', function(){
             };
         }]
     };
-});
+}]);
 
 angular.module('alchemy').directive('alchTableToolbar', function(){
     return {
