@@ -11,7 +11,7 @@ angular.module("alch-templates").run(["$templateCache", function($templateCache)
     "    </th>" +
     "  </tr>" +
     "  <tr>" +
-    "    <th ng-show=\"rowSelect\">" +
+    "    <th ng-show=\"rowSelect\" class=\"row-select\">" +
     "      <input class=\"select_all\" " +
     "             type=\"checkbox\" " +
     "             name=\"select_all\" " +
@@ -33,7 +33,7 @@ angular.module("alch-templates").run(["$templateCache", function($templateCache)
     "  <tr ng-class=\"{active : row.selected }\" " +
     "      ng-repeat=\"row in table.data.rows\" " +
     "      ng-show=\"show_row(row)\">" +
-    "    <td ng-show=\"rowSelect\">" +
+    "    <td ng-show=\"rowSelect\" class=\"row-select\">" +
     "      <input ng-model=\"row.selected\" " +
     "             type=\"checkbox\" name=\"{{ row.id }}\" " +
     "             value=\"{{ row.id }}\" " +
