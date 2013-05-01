@@ -74,6 +74,16 @@ describe('Directive: Alchemy Tables', function () {
            expect(head.find('th').length).toBe(row_data.columns.length + 2);
         }));
 
+        it('should be able to retrieve selected rows', function () {
+            var selectedRows = scope.table_data.get_selected_rows();
+            expect(selectedRows.length).toBe(0);
+
+            scope.table_data.data.rows[0].selected = true;
+            selectedRows = scope.table_data.get_selected_rows();
+            expect(selectedRows.length).toBe(1);
+            expect(selectedRows[0].id).toBe("row_1")
+        });
+
         xit('should allow an action when clicking a column header', inject(function () {
             var column_id = undefined;
             
