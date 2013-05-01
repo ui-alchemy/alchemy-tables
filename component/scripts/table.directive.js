@@ -47,6 +47,16 @@ angular.module('alchemy').directive('alchTable', ['$window', function ($window) 
                 $scope.table.num_selected += selected ? 1 : -1;
             };
 
+            $scope.table.get_selected_rows = function (selected) {
+                var selected = [];
+                angular.forEach($scope.table.data.rows, function (row) {
+                    if (row.selected) {
+                        selected.push(row);
+                    }
+                });
+                return selected;
+            };
+
             $scope.table.select_all = function(selected){
                 var table = $scope.table;
 
