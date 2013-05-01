@@ -14,8 +14,8 @@ angular.module('alchemy').directive('alchTable', ['$window', function ($window) 
             scope.$watch('table.data.rows', function (newValue, oldValue) {
                 // Only do this when directive first initializes
                 if (newValue && !oldValue) {
-                    var percentageOfWindow = element.height() / $window.innerHeight;
-                    if ((percentageOfWindow >= 0.6 && percentageOfWindow <= 0.9) && scope.table.more_results) {
+                    var space = $window.innerHeight - (element[0].offsetTop + element[0].offsetHeight);
+                    if (space > 0) {
                         scope.table.next_page();
                     }
                 }
