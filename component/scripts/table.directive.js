@@ -23,6 +23,10 @@ angular.module('alchemy').directive('alchTable', ['$window', function ($window) 
         },
 
         controller: ['$scope', function($scope){
+            // Initialize table properties
+            $scope.table.num_selected = 0;
+            $scope.table.all_selected = false;
+
             if (!$scope.table.scroll_distance) {
                 $scope.table.scroll_distance = 0;
             }
