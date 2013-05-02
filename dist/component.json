@@ -1,6 +1,6 @@
 {
   "name": "alchemy-tables",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "main" : ["./*.js", "./*.scss", "./*.css"],
   "dependencies": {
     "angular": "~1.0.5",

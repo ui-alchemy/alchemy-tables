@@ -14,6 +14,7 @@ angular.module("alch-templates").run(["$templateCache", function($templateCache)
     "    <span ng-model=\"table.num_selected\">{{ table.num_selected }} Selected</span>" +
     "    <a ng-click=\"deselect_all()\" href=\"\">Deselect All</a>" +
     "  </div>" +
+    "  <span class=\"fr table-actions\" ng-transclude></span>" +
     "</div>" +
     "");
 }]);
