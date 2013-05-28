@@ -71,10 +71,10 @@ describe('Directive: Row Select', function () {
             expect(checkbox.is(':checked')).toBe(true);
         }));
 
-        it('should select all rows on all_selected property set to true', inject(function ($rootScope, $compile) {
+        it('should select all rows on allSelected property set to true', inject(function ($rootScope, $compile) {
             var checkbox = element.find('thead').find('input[type="checkbox"]');
 
-            scope.table_data.all_selected = true;
+            scope.table_data.allSelected = true;
             scope.$digest();
 
             expect(checkbox.is(':checked')).toBe(true);
