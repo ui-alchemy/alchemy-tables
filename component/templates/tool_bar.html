@@ -1,14 +1,6 @@
 <div ng-model="table.data.columns" class="form table-toolbar">
   <h2>{{ table.title }}</h2>
-  <div class="fl">
-    <input type="text"
-           class="input" 
-           placeholder="Search..." 
-           ng-model="table.searchString" 
-           on-enter="table.search(table.searchString)"
-    />
-    Showing {{ table.offset }}-{{ table.subtotal }} of {{ table.total }} {{ table.model }}
-  </div>
+  <div alch-search="table"></div>
   <div class="fr deselect" ng-show="table.numSelected">
     <span ng-model="table.numSelected">{{ table.numSelected }} Selected</span>
     <a ng-click="deselectAll()" href="">Deselect All</a>
