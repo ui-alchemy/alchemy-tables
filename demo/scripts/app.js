@@ -40,7 +40,7 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
     $scope.table_data.search = function(search_term){
         angular.forEach($scope.table_data.data.rows, function(row){
             var search_string = $scope.table_data.search_string;
-            
+
             if( search_string !== undefined && search_string !== "" ){
                 if( row.cells[0].display.toString() !== search_string.toString() ){
                     row.show = false;
@@ -77,7 +77,7 @@ function data(num_columns, num_rows){
     }
 
     for(j=0; j < num_rows; j+= 1){
-        cells.push({ id : j + i, display : i +j, column_id : j });
+        cells.push({ id : j + i, display : i +j, columnId : j });
 
         tmp['rows'].push({
             'row_id': 'row_' + i,
