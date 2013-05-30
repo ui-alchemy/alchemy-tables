@@ -75,11 +75,11 @@ describe('Directive: Alchemy Tables', function () {
         }));
 
         it('should be able to retrieve selected rows', function () {
-            var selectedRows = scope.table_data.get_selected_rows();
+            var selectedRows = scope.table_data.getSelectedRows();
             expect(selectedRows.length).toBe(0);
 
             scope.table_data.data.rows[0].selected = true;
-            selectedRows = scope.table_data.get_selected_rows();
+            selectedRows = scope.table_data.getSelectedRows();
             expect(selectedRows.length).toBe(1);
             expect(selectedRows[0].id).toBe("row_1")
         });

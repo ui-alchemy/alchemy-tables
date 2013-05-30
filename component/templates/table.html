@@ -2,7 +2,7 @@
   <tr>
     <th class="table-selection-row" 
         colspan="{{ table.data.columns.length +1 }}" 
-        ng-show="table.more_results()">
+        ng-show="table.moreResults()">
 
         All {{ table.offset }} results shown are currently selected.  
         <a href="">Select all {{ table.total }} results.</a>
@@ -10,11 +10,11 @@
   </tr>
   <tr>
     <th ng-show="rowSelect" class="row-select">
-      <input class="select_all" 
+      <input class="selectAll" 
              type="checkbox" 
-             name="select_all" 
-             ng-model="table.all_selected" 
-             ng-change="table.select_all()">
+             name="selectAll" 
+             ng-model="table.allSelected" 
+             ng-change="table.selectAll()">
     </th>
     <th ng-click="table.sort(header)" 
         ng-show="header.show" 
@@ -25,19 +25,19 @@
     </th>
   </tr>
 </thead>
-<tbody infinite-scroll="table.next_page()" 
-       infinite-scroll-disable="table.loading_more" 
-       infinite-scroll-distance="table.scroll_distance">
+<tbody infinite-scroll="table.nextPage()" 
+       infinite-scroll-disable="table.loadingMore" 
+       infinite-scroll-distance="table.scrollDistance">
   <tr ng-class="{active : row.selected }" 
       ng-repeat="row in table.data.rows" 
-      ng-show="show_row(row)">
+      ng-show="showRow(row)">
     <td ng-show="rowSelect" class="row-select">
       <input ng-model="row.selected" 
              type="checkbox" name="{{ row.id }}" 
              value="{{ row.id }}" 
-             ng-change="adjust_num_selected(row.selected)">
+             ng-change="adjustNumSelected(row.selected)">
     </td>
-    <td ng-show="show_cell(cell)" 
+    <td ng-show="showCell(cell)" 
         ng-repeat="cell in row.cells"
         ng-bind-html-unsafe="cell.display">
       

@@ -13,7 +13,7 @@ before_install:
 
 before_script:
   - sudo gem install compass
-  - npm install -g testacular@canary grunt-cli bower
+  - npm install -g karma grunt-cli bower
   - npm install
   - bower install --dev
 
