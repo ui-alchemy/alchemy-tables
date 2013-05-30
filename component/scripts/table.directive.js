@@ -12,12 +12,12 @@ angular.module('alchemy').directive('alchTable', ['$window', '$location', functi
         link: function (scope, element) {
             // Load the next page of results if the
             scope.$watch('table.data.rows', function (newValue, oldValue) {
-                if (scope.table.hasOwnProperty('next_page')) {
+                if (scope.table.hasOwnProperty('nextPage')) {
                     // Only do this when directive first initializes
                     if ((newValue && !oldValue) || $location.search()) {
                         var space = $window.innerHeight - (element[0].offsetTop + element[0].offsetHeight);
                         if (space > 0) {
-                            scope.table.next_page();
+                            scope.table.nextPage();
                         }
                     }
                 }
@@ -26,34 +26,34 @@ angular.module('alchemy').directive('alchTable', ['$window', '$location', functi
 
         controller: ['$scope', function($scope){
             // Initialize table properties
-            $scope.table.num_selected = 0;
-            $scope.table.all_selected = false;
+            $scope.table.numSelected = 0;
+            $scope.table.allSelected = false;
 
-            if (!$scope.table.scroll_distance) {
-                $scope.table.scroll_distance = 0;
+            if (!$scope.table.scrollDistance) {
+                $scope.table.scrollDistance = 0;
             }
 
-            $scope.show_cell = function(cell){
-                var to_show;
+            $scope.showCell = function(cell){
+                var toShow;
 
                 angular.forEach($scope.table.data.columns, function(header){
-                    if( header.id === cell.column_id ){
-                        to_show = header.show;
+                    if( header.id === cell.columnId ){
+                        toShow = header.show;
                     }
                 });
 
-                return to_show;
+                return toShow;
             };
 
-            $scope.show_row = function(row){
+            $scope.showRow = function(row){
                 return row.show;
             };
 
-            $scope.adjust_num_selected = function(selected){
-                $scope.table.num_selected += selected ? 1 : -1;
+            $scope.adjustNumSelected = function(selected){
+                $scope.table.numSelected += selected ? 1 : -1;
             };
 
-            $scope.table.get_selected_rows = function () {
+            $scope.table.getSelectedRows = function () {
                 var selected = [];
                 angular.forEach($scope.table.data.rows, function (row) {
                     if (row.selected) {
@@ -63,24 +63,24 @@ angular.module('alchemy').directive('alchTable', ['$window', '$location', functi
                 return selected;
             };
 
-            $scope.table.select_all = function(selected){
+            $scope.table.selectAll = function(selected){
                 var table = $scope.table;
 
                 if( selected !== undefined ){
-                    table.all_selected = selected;
+                    table.allSelected = selected;
                 }
 
-                table.num_selected = table.all_selected ? table.data.rows.length : 0;
+                table.numSelected = table.allSelected ? table.data.rows.length : 0;
 
                 angular.forEach(table.data.rows, function(row){
-                    row.selected = table.all_selected;
+                    row.selected = table.allSelected;
                 });
             };
 
-            $scope.table.more_results = function(){
+            $scope.table.moreResults = function(){
                 var more = $scope.table.total > $scope.table.offset;
 
-                more = more && $scope.table.all_selected;
+                more = more && $scope.table.allSelected;
                 return more;
             };
         }]
@@ -97,8 +97,8 @@ angular.module('alchemy').directive('alchTableToolbar', function(){
         templateUrl: 'component/templates/tool_bar.html',
 
         controller: ['$scope', function($scope){
-            $scope.deselect_all = function(){
-                $scope.table.select_all(false);
+            $scope.deselectAll = function(){
+                $scope.table.selectAll(false);
             };
         }]
     };
