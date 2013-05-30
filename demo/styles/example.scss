@@ -1,6 +1,17 @@
+@import "compass";
+
+* {
+  @include box-sizing(border-box);
+}
+
+@import "alchemy/normalize";
 @import "alchemy/alchemy";
 @import "alchemy-forms/forms";
 @import "main";
 
 .fl { float: left; }
 .fr { float: right; }
+
+body {
+  font-family: Overpass, sans-serif;
+}

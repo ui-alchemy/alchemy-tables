@@ -1,11 +1,16 @@
 <thead>
   <tr>
     <th class="table-selection-row" 
-        colspan="{{ table.data.columns.length +1 }}" 
-        ng-show="table.moreResults()">
-
-        All {{ table.offset }} results shown are currently selected.  
-        <a href="">Select all {{ table.total }} results.</a>
+        colspan="{{ table.data.columns.length +1 }}"
+        ng-show="table.numSelected">
+        <div class="fl table-deselect-action">
+          <span ng-model="table.numSelected">{{ table.numSelected }} Selected</span>
+          <a ng-click="deselectAll()" href="">Deselect All</a>
+        </div>
+        <div ng-show="table.moreResults()">
+          All {{ table.offset }} results shown are currently selected. 
+          <a href="" class="table-select-all-action">Select all {{ table.total }} results.</a>
+        </div>
     </th>
   </tr>
   <tr>

@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name alchemy.directive:alchTable
+ * @restrict A
+ *
+ * @description
+ *
+ * @example
+ */
 angular.module('alchemy').directive('alchTable', ['$window', '$location', function ($window, $location) {
     return {
         restrict: 'A',
@@ -83,23 +92,10 @@ angular.module('alchemy').directive('alchTable', ['$window', '$location', functi
                 more = more && $scope.table.allSelected;
                 return more;
             };
-        }]
-    };
-}]);
 
-angular.module('alchemy').directive('alchTableToolbar', function(){
-    return {
-        restrict: 'A',
-        transclude: true,
-        scope: {
-            'table' : '=alchTableToolbar'
-        },
-        templateUrl: 'component/templates/tool_bar.html',
-
-        controller: ['$scope', function($scope){
             $scope.deselectAll = function(){
                 $scope.table.selectAll(false);
             };
         }]
     };
-});
+}]);

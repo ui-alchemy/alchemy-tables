@@ -23,9 +23,10 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
 
     $scope.title = "Table 1 - Main Example";
     $scope.table_data.model = "Systems";
-    $scope.table_data.total = tmp_data.rows.length + 1;
+    $scope.table_data.total = tmp_data.rows.length * 3;
     $scope.table_data.start = 1;
     $scope.table_data.offset = tmp_data.rows.length;
+    $scope.table_data.subtotal = tmp_data.rows.length + 1;
     $scope.table_data.scroll_distance = 1;
 
     $scope.table_data.sort = function(header){
@@ -37,13 +38,13 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
         header.active = true;
     }
 
-    $scope.table_data.search = function(search_term){
+    $scope.table_data.search = function(searchTerm) {
         angular.forEach($scope.table_data.data.rows, function(row){
-            var search_string = $scope.table_data.search_string;
-            
-            if( search_string !== undefined && search_string !== "" ){
-                if( row.cells[0].display.toString() !== search_string.toString() ){
+            if( searchTerm !== undefined && searchTerm !== "" ){
+                if( row.cells[0].display.toString() !== searchTerm.toString() ){
                     row.show = false;
+                } else {
+                    row.show = true;
                 }
             } else {
                 row.show = true;
@@ -77,7 +78,7 @@ function data(num_columns, num_rows){
     }
 
     for(j=0; j < num_rows; j+= 1){
-        cells.push({ id : j + i, display : i +j, column_id : j });
+        cells.push({ id : j + i, display : i +j, columnId : j });
 
         tmp['rows'].push({
             'row_id': 'row_' + i,

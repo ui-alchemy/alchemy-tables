@@ -1,0 +1,8 @@
+<div>
+  <input type="text"
+         class="input input-search" 
+         placeholder="Search..." 
+         ng-model="search.searchTerm" 
+         on-enter="search.search(search.searchTerm)"/>
+  <span class="result-count">Showing {{ search.offset }} of {{ search.subtotal }} ({{ search.total }} Total) {{ search.model }}</span>
+</div>
