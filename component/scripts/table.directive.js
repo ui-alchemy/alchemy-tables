@@ -92,6 +92,10 @@ angular.module('alchemy').directive('alchTable', ['$window', '$location', functi
                 more = more && $scope.table.allSelected;
                 return more;
             };
+
+            $scope.deselectAll = function(){
+                $scope.table.selectAll(false);
+            };
         }]
     };
 }]);

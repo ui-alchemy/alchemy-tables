@@ -23,7 +23,7 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
 
     $scope.title = "Table 1 - Main Example";
     $scope.table_data.model = "Systems";
-    $scope.table_data.total = tmp_data.rows.length*3;
+    $scope.table_data.total = tmp_data.rows.length * 3;
     $scope.table_data.start = 1;
     $scope.table_data.offset = tmp_data.rows.length;
     $scope.table_data.subtotal = tmp_data.rows.length + 1;

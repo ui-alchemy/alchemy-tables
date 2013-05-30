@@ -1,9 +1,0 @@
-<div ng-model="table.data.columns" class="form table-toolbar">
-  <h2>{{ table.title }}</h2>
-  <div alch-search="table"></div>
-  <div class="fr deselect" ng-show="table.numSelected">
-    <span ng-model="table.numSelected">{{ table.numSelected }} Selected</span>
-    <a ng-click="deselectAll()" href="">Deselect All</a>
-  </div>
-  <span class="fr table-actions" ng-transclude></span>
-</div>
