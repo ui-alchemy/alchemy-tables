@@ -1,6 +1,8 @@
 <div ng-controller="table1Ctrl">
-  <h2>{{ title }}</h2>
-  <div alch-table-toolbar="table_data"></div>
-  <table alch-table="table_data" class="table stable focus stripe-row" row-select="true">
+  <div class="form table-toolbar">
+    <h2>{{ table_data.title }}</h2>
+    <div alch-search="table_data"></div>
+  </div>
+  <table alch-table="table_data" class="table table-striped table-bordered" row-select="true">
   </table>
 </div>
