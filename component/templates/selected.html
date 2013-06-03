@@ -1,0 +1,15 @@
+<div>
+  <div class="deselect-action-container">
+    <span ng-model="selected.numSelected">{{ selected.numSelected }} Selected</span>
+    <a class="deselect-action"
+       ng-class="{ 'disabled-link' : selected.numSelected == 0 }"
+       ng-click="deselectAll()">
+      Deselect All
+    </a>
+  </div>
+  <div class="select-all-action-container"
+       ng-show="selected.moreResults()">
+    All {{ table.offset }} results shown are currently selected. 
+    <a class="table-select-all-action">Select all {{ table.total }} results.</a>
+  </div>
+</div>

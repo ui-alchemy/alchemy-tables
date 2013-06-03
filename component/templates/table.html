@@ -1,19 +1,5 @@
 <thead>
   <tr>
-    <th class="table-selection-row" 
-        colspan="{{ table.data.columns.length +1 }}"
-        ng-show="table.numSelected">
-        <div class="fl table-deselect-action">
-          <span ng-model="table.numSelected">{{ table.numSelected }} Selected</span>
-          <a ng-click="deselectAll()" href="">Deselect All</a>
-        </div>
-        <div ng-show="table.moreResults()">
-          All {{ table.offset }} results shown are currently selected. 
-          <a href="" class="table-select-all-action">Select all {{ table.total }} results.</a>
-        </div>
-    </th>
-  </tr>
-  <tr>
     <th ng-show="rowSelect" class="row-select">
       <input class="selectAll" 
              type="checkbox" 
@@ -33,7 +19,7 @@
 <tbody infinite-scroll="table.nextPage()" 
        infinite-scroll-disable="table.loadingMore" 
        infinite-scroll-distance="table.scrollDistance">
-  <tr ng-class="{active : row.selected }" 
+  <tr ng-class="{ 'active-row' : row.selected }" 
       ng-repeat="row in table.data.rows" 
       ng-show="showRow(row)">
     <td ng-show="rowSelect" class="row-select">

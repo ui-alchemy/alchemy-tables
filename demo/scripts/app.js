@@ -21,7 +21,7 @@ angular.module('componentExampleApp').controller('table1Ctrl', function($scope){
     $scope.table_data = {};
     $scope.table_data.data = tmp_data;
 
-    $scope.title = "Table 1 - Main Example";
+    $scope.table_data.title = "Table 1 - Main Example";
     $scope.table_data.model = "Systems";
     $scope.table_data.total = tmp_data.rows.length * 3;
     $scope.table_data.start = 1;

@@ -1,6 +1,4 @@
-$bg:  #a7b0b2;
-$fg:  #555;
-$highlight: orange !default;
+$row-highlight: rgb(0, 162, 155) !default;
 
 .table {
   border-spacing:0;
@@ -20,15 +18,16 @@ $highlight: orange !default;
   }
 
   td {
-    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #EEE;
+    border-bottom-color: rgba(0, 0, 0, 0.033)
   }
 
   .active-column {
     background: rgb(175, 175, 175);
   }
 
-  .active {
-    background-color: $highlight;
+  .active-row {
+    background-color: $row-highlight;
     color: #FFF;
   }
 
@@ -38,28 +37,68 @@ $highlight: orange !default;
 }
 
 .table-bordered {
-  border-collapse: separate;
-  border: 1px solid #CCC;
+  th {
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+  }
 
   td, th {
     border-left: 1px solid #CCC;
   }
+
+  td {
+    border-collapse: separate;
+  }
+
+  tr:last-child td {
+    border-bottom: 1px solid #EEE;
+  }
+}
+
+.disabled-link, .disabled-link:hover {
+  color: rgb(100, 100, 100);
+  opacity: 0.5;
+  cursor: default;
+  text-decoration: none;
 }
 
 .table-striped {
-  tr:nth-child(odd) td {
+  th {
+    background-color: rgba(194, 200, 202, 0.3);
+  }
+
+  tr:nth-child(even) td {
     background-color: rgba(194, 200, 202, 0.15);
   }
 }
 
 .table-selection-row {
-  background: rgb(255, 207, 105);
   text-align: center;
+  display: block;
 }
 
 .table-toolbar {
+  background: white;
+  overflow: auto;
+  padding: 10px;
+}
+
+.table-searchbar {
   background: rgb(238, 238, 238);
   overflow: auto;
   padding: 10px;
-  border: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+}
+
+.deselect-action-container {
+  display: block;
+  float: left;
+}
+
+.select-all-action-container {
+  text-align: center;
+}
+
+.search-input-container {
+  width: 100%;
 }
