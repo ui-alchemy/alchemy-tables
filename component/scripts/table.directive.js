@@ -59,7 +59,14 @@ angular.module('alchemy').directive('alchTable', ['$window', '$location', functi
             };
 
             $scope.adjustNumSelected = function(selected){
-                $scope.table.numSelected += selected ? 1 : -1;
+                var table = $scope.table;
+
+                table.numSelected += selected ? 1 : -1;
+                table.allSelected = false;
+
+                if (table.numSelected < 0) {
+                    table.numSelected = 0;
+                }
             };
 
             $scope.table.getSelectedRows = function () {
@@ -91,10 +98,6 @@ angular.module('alchemy').directive('alchTable', ['$window', '$location', functi
 
                 more = more && $scope.table.allSelected;
                 return more;
-            };
-
-            $scope.deselectAll = function(){
-                $scope.table.selectAll(false);
             };
         }]
     };

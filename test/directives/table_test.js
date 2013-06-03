@@ -7,11 +7,11 @@ describe('Directive: Alchemy Tables', function () {
 
     beforeEach(function(){
         row_data = {
-            'columns' : [{ 
-                id : 1, 
-                name : 'Column 1', 
-                show : true 
-            }, { 
+            'columns' : [{
+                id : 1,
+                name : 'Column 1',
+                show : true
+            }, {
                 id: 2,
                 name: 'Column 2',
                 show: true
@@ -28,7 +28,7 @@ describe('Directive: Alchemy Tables', function () {
                     column: 2
                 }]
             },{
-                'id': 'row_2',      
+                'id': 'row_2',
                 'cells' : [{
                     id: 1,
                     display: 1,
@@ -42,7 +42,7 @@ describe('Directive: Alchemy Tables', function () {
         }
     });
 
-    describe('table', function(){
+    describe('', function(){
 
         beforeEach(inject(function($rootScope, $compile){
             element = angular.element('<table alch-table="table_data"></table>');
@@ -71,7 +71,7 @@ describe('Directive: Alchemy Tables', function () {
         it('should generate two columns', inject(function () {
             var head = element.find('thead');
 
-           expect(head.find('th').length).toBe(row_data.columns.length + 2);
+           expect(head.find('th').length).toBe(row_data.columns.length + 1);
         }));
 
         it('should be able to retrieve selected rows', function () {
@@ -86,13 +86,13 @@ describe('Directive: Alchemy Tables', function () {
 
         xit('should allow an action when clicking a column header', inject(function () {
             var column_id = undefined;
-            
+
             scope.sort = function(column){
                 if (column.id === 1){
                     column_id = column.id;
                 }
             };
-            
+
             $(element.find('th')[2]).click();
 
             expect(column_id).toBe(row_data.columns[0].id);
